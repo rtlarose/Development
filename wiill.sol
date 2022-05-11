@@ -28,7 +28,7 @@ contract Will {
     mapping(address => uint) inheritance  //mappping through addresses which has its own integer
 
     // set inheritance for each address
-    function setInheritance(address payable wallet, uint amount) public {
+    function setInheritance(address payable wallet, uint amount) public onlyOwner {  //only owner can set ingeritance
         familyWallets.push(wallet);
         inheritance[wallet] = amount;
     }
@@ -37,7 +37,7 @@ contract Will {
 
     function payout() private mustBeDeceased {
         for(i=0;i<familyWallets.length;i++) {
-            
+            familyWallets[i].transfer(inheritance[familyWallets[i]]);
         }
     }
 }
