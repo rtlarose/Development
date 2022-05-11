@@ -22,4 +22,22 @@ contract Will {
         require(deceased == true);
         _;  // tell function to continue the function after modifier is complete
     }
+
+    address payable[] familyWallets // store all family addresses
+
+    mapping(address => uint) inheritance  //mappping through addresses which has its own integer
+
+    // set inheritance for each address
+    function setInheritance(address payable wallet, uint amount) public {
+        familyWallets.push(wallet);
+        inheritance[wallet] = amount;
+    }
+
+    // Pay each family member based on their wallet address
+
+    function payout() private mustBeDeceased {
+        for(i=0;i<familyWallets.length;i++) {
+            
+        }
+    }
 }
